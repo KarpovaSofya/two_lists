@@ -47,53 +47,29 @@ def func_sorted(a,b):
 	i = 0
 	k = 0
 
-	if len(a) > len(b):
-		max_el = b[-1]
-		min_el = b[0]
-		while a[i] <= max_el:
-			if a[i] < min_el:
-				min_el_index = i+1
+	if len(a) < len(b):
+		(a,b) = (b,a)
+	max_el = b[-1]
+	min_el = b[0]
+	while a[i] <= max_el:
+		if a[i] < min_el:
+			min_el_index = i+1
 
-			if a[i] <= max_el:
-				max_el_index = i+1
+		if a[i] <= max_el:
+			max_el_index = i+1
 
-			i += 1
-			if i == len(a) - 1:
-				break
+		i += 1
+		if i == len(a) - 1:
+			break
 
-		if max_el_index == len(a):
-			a = a[min_el_index:]
-		else:
-			a = a[min_el_index: max_el_index]
-
-		for i in b:
-			if i in a:
-				k += 1
-
+	if max_el_index == len(a):
+		a = a[min_el_index:]
 	else:
-		max_el = a[-1]
-		min_el = a[0]
-		while b[i] <= max_el:
-			if b[i] < min_el:
-				min_el_index = i+1
-
-			if b[i] <= max_el:
-				max_el_index = i+1
-
-			i += 1
-			if i == len(a) - 1:
-				break
-
-		if max_el_index == len(b):
-			b = b[min_el_index:]
-		else:
-			b = b[min_el_index: max_el_index]
-
-		for i in a:
-			if i in b:
-				k += 1
+		a = a[min_el_index: max_el_index]
+	for i in b:
+		if i in a:
+			k += 1
 	return k
-
 # Создание данных
 
 def generate_data():
@@ -137,4 +113,4 @@ def time_plot():
 	plt.legend()
 	plt.show()
 
-#time_plot()
+time_plot()

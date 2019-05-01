@@ -19,16 +19,24 @@ class TestUM(unittest.TestCase):
 #		self.assertEqual(func1(a,b), 2)
 
 	def test(self):
-		for i in range(10):
+		for i in range(len(data)):
 			self.assertEqual(func1(main_lst,data[i][0]),data[i][-1])
 
 	def test_sorted(self):
-		for i in range(10):
+		for i in range(len(data)):
 			self.assertEqual(func_sorted(main_lst,data[i][0]),data[i][-1])
 
 	def test_equal(self):
 		for i in range(len(data)):
 			self.assertEqual(func1(main_lst,data[i][0]),func_sorted(main_lst, data[i][0]))
+
+	def test_reverse1(self):
+		for i in range(len(data)):
+			self.assertEqual(func1(main_lst,data[i][0]),func1(data[i][0],main_lst))
+
+	def test_reverse2(self):
+		for i in range(len(data)):
+			self.assertEqual(func_sorted(data[i][0],main_lst),func_sorted(main_lst, data[i][0]))
 
 if __name__ == '__main__':
 	unittest.main()
